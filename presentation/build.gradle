@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion 26
+  buildToolsVersion "26.0.2"
+  defaultConfig {
+    applicationId "com.example.swetashinde.openarchitecturedemo"
+    minSdkVersion 15
+    targetSdkVersion 26
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  //Enforces Gradle to only compile the version number you state for all dependencies, no matter which version number the dependencies have stated.
+  configurations.all {
+    resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+  }
+}
+
+dependencies {
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  // Dependencies on other modules.
+  compile project(path: ':domain')
+  compile project(path: ':data')
+
+
+
+
+  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
+
+  //retrofit
+  
+
+  // dagger
+  
+  //leak canary
+  
+  
+  
+
+
+
+  compile 'com.android.support:appcompat-v7:26.+'
+  compile 'com.android.support.constraint:constraint-layout:1.0.2'
+  compile 'com.google.code.gson:gson:2.8.2'
+  compile 'com.squareup.retrofit2:retrofit:2.3.0'
+  compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+  compile 'com.google.dagger:dagger:2.11'
+  compile 'com.google.dagger:dagger-android:2.11'
+  compile 'com.google.dagger:dagger-android-support:2.11'
+  compile 'com.jakewharton:butterknife:7.0.1'
+  compile 'com.android.support:cardview-v7:26.+'
+  compile 'com.android.support:recyclerview-v7:26.+'
+  compile 'com.github.bumptech.glide:glide:3.7.0'
+  compile 'com.github.bumptech.glide:volley-integration:1.4.0@aar'
+  compile 'com.android.volley:volley:1.0.0'
+  testCompile 'junit:junit:4.12'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+  annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+  debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+  releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+}
